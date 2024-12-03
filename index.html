@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Situs Pembuat Surat Lamaran Kerja Lengkap di Indonesia. Buat surat lamaran kerja profesional dan unduh sebagai PDF.">
+    <title>Pembuat Surat Lamaran Kerja</title>
+
+    <!-- Gaya CSS untuk Tampilan Modern -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #bbb;
+        }
+        .form-group {
+            text-align: left;
+        }
+        .ads {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #letter-preview {
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            display: none;
+        }
+        #download-btn {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        #download-btn:disabled {
+            background-color: #bbb;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        let adSeen = false;
+
+        // Fungsi untuk menampilkan preview surat lamaran kerja
+        function generateLetter() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const position = document.getElementById('position').value;
+            const experience = document.getElementById('experience').value;
+            const reason = document.getElementById('reason').value;
+
+            if (!name || !address || !city || !phone || !email || !company || !position || !experience || !reason) {
+                alert('Semua kolom harus diisi!');
+                return;
+            }
+
+            // Menampilkan tanggal saat surat dibuat
+            const today = new Date();
+            const date = today.toLocaleDateString('id-ID');
+
+            const preview = `
+                <div style="text-align: right;">${date}</div>
+                <h2>Surat Lamaran Kerja</h2>
+                <p>Yth. ${company},</p>
+                <p>Dengan hormat,</p>
+                <p>Saya yang bertanda tangan di bawah ini:</p>
+                <p><strong>Nama:</strong> ${name}</p>
+                <p><strong>Alamat:</strong> ${address}, ${city}</p>
+                <p><strong>Telepon:</strong> ${phone}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p>Dengan ini saya mengajukan permohonan untuk bergabung dengan perusahaan yang Bapak/Ibu pimpin untuk posisi <strong>${position}</strong>.</p>
+                <p>Berikut adalah pengalaman kerja saya:</p>
+                <p><strong>Pengalaman Kerja:</strong> ${experience}</p>
+                <p><strong>Alasan Melamar:</strong> ${reason}</p>
+                <p>Demikian surat lamaran ini saya buat, besar harapan saya untuk dapat diberikan kesempatan untuk bergabung dengan perusahaan yang Bapak/Ibu pimpin. Terima kasih atas perhatian Bapak/Ibu.</p>
+                <p>Hormat saya,</p>
+                <p><strong>${name}</strong></p>
+            `;
+            document.getElementById('letter-preview').innerHTML = preview;
+            document.getElementById('letter-preview').style.display = 'block';
+
+            // Mengaktifkan tombol unduh setelah iklan dilihat
+            if (adSeen) {
+                document.getElementById('download-btn').disabled = false;
+            }
+        }
+
+        // Fungsi untuk mengunduh surat lamaran kerja sebagai PDF
+        function downloadLetter() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const position = document.getElementById('position').value;
+            const experience = document.getElementById('experience').value;
+            const reason = document.getElementById('reason').value;
+
+            const today = new Date();
+            const date = today.toLocaleDateString('id-ID');
+
+            doc.setFontSize(12);
+            doc.text(`Tanggal: ${date}`, 160, 20);
+            doc.text('Surat Lamaran Kerja', 20, 30);
+            doc.text(`Yth. ${company},`, 20, 40);
+            doc.text('Dengan hormat,', 20, 50);
+            doc.text(`Saya yang bertanda tangan di bawah ini:`, 20, 60);
+            doc.text(`Nama: ${name}`, 20, 70);
+            doc.text(`Alamat: ${address}, ${city}`, 20, 80);
+            doc.text(`Telepon: ${phone}`, 20, 90);
+            doc.text(`Email: ${email}`, 20, 100);
+            doc.text(`Dengan ini saya mengajukan permohonan untuk bergabung dengan perusahaan yang Bapak/Ibu pimpin untuk posisi ${position}.`, 20, 110);
+            doc.text(`Pengalaman Kerja: ${experience}`, 20, 120);
+            doc.text(`Alasan Melamar: ${reason}`, 20, 130);
+            doc.text('Demikian surat lamaran ini saya buat, besar harapan saya untuk dapat diberikan kesempatan untuk bergabung dengan perusahaan yang Bapak/Ibu pimpin. Terima kasih atas perhatian Bapak/Ibu.', 20, 140);
+            doc.text('Hormat saya,', 20, 150);
+            doc.text(name, 20, 160);
+
+            doc.save('surat-lamaran-kerja.pdf');
+        }
+
+        // Fungsi untuk memverifikasi bahwa iklan telah dilihat
+        function adSeenCallback() {
+            adSeen = true;
+            document.getElementById('download-btn').disabled =
