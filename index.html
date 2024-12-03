@@ -64,6 +64,11 @@
         section {
             margin-top: 40px;
         }
+
+        .ads {
+            text-align: center;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +80,21 @@
 
 <div class="container">
 
+    <!-- Google Ads: Iklan di bagian atas -->
+    <div class="ads">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886" crossorigin="anonymous"></script>
+        <!-- Iklan Atas -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5049465564637886"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <!-- To-Do List -->
     <section>
         <h2>To-Do List</h2>
@@ -82,6 +102,21 @@
         <button onclick="addTodo()">Tambah Tugas</button>
         <ul id="todoList"></ul>
     </section>
+
+    <!-- Google Ads: Iklan di antara fitur -->
+    <div class="ads">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886" crossorigin="anonymous"></script>
+        <!-- Iklan Tengah -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5049465564637886"
+            data-ad-slot="1234567891"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- Kalkulator -->
     <section>
@@ -116,10 +151,25 @@
         <div class="result" id="timerDisplay"></div>
     </section>
 
+    <!-- Google Ads: Iklan di bagian bawah -->
+    <div class="ads">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886" crossorigin="anonymous"></script>
+        <!-- Iklan Bawah -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5049465564637886"
+            data-ad-slot="1234567892"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
 </div>
 
 <script>
-    // To-Do List
+    // JavaScript untuk fitur aplikasi (To-Do List, Kalkulator, Penghitung Usia, IMT, Timer)
     const todoList = [];
     function addTodo() {
         const todoInput = document.getElementById('todoInput').value.trim();
@@ -145,7 +195,6 @@
         renderTodoList();
     }
 
-    // Kalkulator
     function calculate() {
         const calcInput = document.getElementById('calcInput').value;
         try {
@@ -156,7 +205,6 @@
         }
     }
 
-    // Penghitung Usia
     function calculateAge() {
         const birthdate = new Date(document.getElementById('birthdate').value);
         const today = new Date();
@@ -164,19 +212,15 @@
             document.getElementById('ageResult').innerHTML = `Masukkan tanggal lahir yang valid.`;
             return;
         }
-
         let age = today.getFullYear() - birthdate.getFullYear();
         const monthDiff = today.getMonth() - birthdate.getMonth();
         const dayDiff = today.getDate() - birthdate.getDate();
-
         if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
             age--;
         }
-
         document.getElementById('ageResult').innerHTML = `Usia Anda: ${age} tahun`;
     }
 
-    // Penghitung IMT
     function calculateIMT() {
         const weight = parseFloat(document.getElementById('weight').value);
         const height = parseFloat(document.getElementById('height').value) / 100;
@@ -188,7 +232,6 @@
         document.getElementById('imtResult').innerHTML = `IMT Anda: ${imt.toFixed(2)}`;
     }
 
-    // Timer
     function startTimer() {
         const time = parseInt(document.getElementById('timerInput').value);
         if (isNaN(time) || time <= 0) {
@@ -197,16 +240,4 @@
         }
         let remaining = time;
         document.getElementById('timerDisplay').innerHTML = `Waktu: ${remaining}s`;
-        const interval = setInterval(() => {
-            remaining--;
-            document.getElementById('timerDisplay').innerHTML = `Waktu: ${remaining}s`;
-            if (remaining <= 0) {
-                clearInterval(interval);
-                document.getElementById('timerDisplay').innerHTML = `Waktu Habis!`;
-            }
-        }, 1000);
-    }
-</script>
-
-</body>
-</html>
+        const interval = setInterval(() =>
