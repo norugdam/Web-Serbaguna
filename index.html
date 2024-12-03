@@ -1,194 +1,212 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembuat Surat Lamaran Kerja</title>
+    <title>Web Serbaguna</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
         }
 
         header {
             background-color: #4CAF50;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 20px 0;
         }
 
-        main {
-            padding: 20px;
+        .container {
             max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input, textarea {
+        input, select, button {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
             cursor: pointer;
         }
 
-        button:disabled {
-            background-color: #ccc;
+        button:hover {
+            background-color: #45a049;
         }
 
-        #letter-preview {
-            margin-top: 20px;
-            text-align: left;
-            display: none;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        #ad-container {
-            margin: 20px 0;
+        .result {
             text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #f1f1f1;
-            margin-top: 20px;
+        section {
+            margin-top: 40px;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-        function generateLetter() {
-            const name = document.getElementById('name').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const position = document.getElementById('position').value;
-
-            if (!name || !address || !city || !phone || !email || !company || !position) {
-                alert('Harap lengkapi semua kolom!');
-                return;
-            }
-
-            const today = new Date();
-            const date = today.toLocaleDateString('id-ID');
-
-            const letterContent = `
-                <div style="text-align: right;">${date}</div>
-                <h2>Surat Lamaran Kerja</h2>
-                <p>Assalamualaikum warahmatullahi wabarakatuh,</p>
-                <p>Yth. ${company},</p>
-                <p>Dengan hormat,</p>
-                <p>Saya yang bertanda tangan di bawah ini:</p>
-                <p>Nama: <strong>${name}</strong></p>
-                <p>Alamat: <strong>${address}, ${city}</strong></p>
-                <p>Telepon: <strong>${phone}</strong></p>
-                <p>Email: <strong>${email}</strong></p>
-                <p>Dengan ini mengajukan permohonan kerja untuk posisi <strong>${position}</strong> di perusahaan yang Bapak/Ibu pimpin.</p>
-                <p>Demikian surat ini saya sampaikan. Atas perhatian dan kebijaksanaan Bapak/Ibu, saya ucapkan terima kasih.</p>
-                <p>Wassalamualaikum warahmatullahi wabarakatuh.</p>
-                <p>Hormat saya,</p>
-                <p>${name}</p>
-            `;
-
-            document.getElementById('letter-preview').innerHTML = letterContent;
-            document.getElementById('letter-preview').style.display = 'block';
-        }
-
-        function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            const letterContent = document.getElementById('letter-preview').innerText;
-
-            doc.text(letterContent, 10, 10);
-            doc.save('surat-lamaran-kerja.pdf');
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <h1>Pembuat Surat Lamaran Kerja</h1>
-    </header>
-    <main>
-        <div>
-            <div class="form-group">
-                <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" placeholder="Masukkan nama lengkap">
-            </div>
-            <div class="form-group">
-                <label for="address">Alamat</label>
-                <input type="text" id="address" placeholder="Masukkan alamat">
-            </div>
-            <div class="form-group">
-                <label for="city">Kota</label>
-                <input type="text" id="city" placeholder="Masukkan kota">
-            </div>
-            <div class="form-group">
-                <label for="phone">Telepon</label>
-                <input type="text" id="phone" placeholder="Masukkan telepon">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Masukkan email">
-            </div>
-            <div class="form-group">
-                <label for="company">Nama Perusahaan</label>
-                <input type="text" id="company" placeholder="Masukkan nama perusahaan">
-            </div>
-            <div class="form-group">
-                <label for="position">Posisi yang Dilamar</label>
-                <input type="text" id="position" placeholder="Masukkan posisi yang dilamar">
-            </div>
-            <button onclick="generateLetter()">Buat Surat</button>
-        </div>
 
-        <div id="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886"
-                crossorigin="anonymous"></script>
-            <!-- Kontainer Iklan -->
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;"
-                 data-ad-client="ca-pub-5049465564637886"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+<header>
+    <h1>Web Serbaguna</h1>
+    <p>Aplikasi All-in-One untuk Kebutuhan Anda</p>
+</header>
 
-        <div id="letter-preview"></div>
-        <button id="download-btn" onclick="downloadPDF()">Unduh PDF</button>
-    </main>
-    <footer>
-        &copy; 2024 Pembuat Surat Lamaran Kerja
-    </footer>
+<div class="container">
+
+    <!-- To-Do List -->
+    <section>
+        <h2>To-Do List</h2>
+        <input type="text" id="todoInput" placeholder="Tambah tugas baru...">
+        <button onclick="addTodo()">Tambah Tugas</button>
+        <ul id="todoList"></ul>
+    </section>
+
+    <!-- Kalkulator -->
+    <section>
+        <h2>Kalkulator</h2>
+        <input type="text" id="calcInput" placeholder="Masukkan perhitungan (contoh: 3+4*5)">
+        <button onclick="calculate()">Hitung</button>
+        <div class="result" id="calcResult"></div>
+    </section>
+
+    <!-- Penghitung Usia -->
+    <section>
+        <h2>Penghitung Usia</h2>
+        <input type="date" id="birthdate" placeholder="Pilih tanggal lahir">
+        <button onclick="calculateAge()">Hitung Usia</button>
+        <div class="result" id="ageResult"></div>
+    </section>
+
+    <!-- Penghitung IMT -->
+    <section>
+        <h2>Penghitung IMT</h2>
+        <input type="number" id="weight" placeholder="Berat Badan (kg)">
+        <input type="number" id="height" placeholder="Tinggi Badan (cm)">
+        <button onclick="calculateIMT()">Hitung IMT</button>
+        <div class="result" id="imtResult"></div>
+    </section>
+
+    <!-- Timer -->
+    <section>
+        <h2>Penghitung Waktu (Timer)</h2>
+        <input type="number" id="timerInput" placeholder="Masukkan waktu (detik)">
+        <button onclick="startTimer()">Mulai</button>
+        <div class="result" id="timerDisplay"></div>
+    </section>
+
+</div>
+
+<script>
+    // To-Do List
+    const todoList = [];
+    function addTodo() {
+        const todoInput = document.getElementById('todoInput').value.trim();
+        if (todoInput) {
+            todoList.push(todoInput);
+            document.getElementById('todoInput').value = '';
+            renderTodoList();
+        }
+    }
+
+    function renderTodoList() {
+        const todoListElement = document.getElementById('todoList');
+        todoListElement.innerHTML = '';
+        todoList.forEach((todo, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${todo} <button onclick="deleteTodo(${index})">Hapus</button>`;
+            todoListElement.appendChild(li);
+        });
+    }
+
+    function deleteTodo(index) {
+        todoList.splice(index, 1);
+        renderTodoList();
+    }
+
+    // Kalkulator
+    function calculate() {
+        const calcInput = document.getElementById('calcInput').value;
+        try {
+            const result = eval(calcInput);
+            document.getElementById('calcResult').innerHTML = `Hasil: ${result}`;
+        } catch {
+            document.getElementById('calcResult').innerHTML = `Masukkan perhitungan yang valid.`;
+        }
+    }
+
+    // Penghitung Usia
+    function calculateAge() {
+        const birthdate = new Date(document.getElementById('birthdate').value);
+        const today = new Date();
+        if (!birthdate || isNaN(birthdate.getTime())) {
+            document.getElementById('ageResult').innerHTML = `Masukkan tanggal lahir yang valid.`;
+            return;
+        }
+
+        let age = today.getFullYear() - birthdate.getFullYear();
+        const monthDiff = today.getMonth() - birthdate.getMonth();
+        const dayDiff = today.getDate() - birthdate.getDate();
+
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            age--;
+        }
+
+        document.getElementById('ageResult').innerHTML = `Usia Anda: ${age} tahun`;
+    }
+
+    // Penghitung IMT
+    function calculateIMT() {
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value) / 100;
+        if (isNaN(weight) || isNaN(height) || height <= 0) {
+            document.getElementById('imtResult').innerHTML = `Masukkan berat dan tinggi badan yang valid.`;
+            return;
+        }
+        const imt = weight / (height * height);
+        document.getElementById('imtResult').innerHTML = `IMT Anda: ${imt.toFixed(2)}`;
+    }
+
+    // Timer
+    function startTimer() {
+        const time = parseInt(document.getElementById('timerInput').value);
+        if (isNaN(time) || time <= 0) {
+            alert('Masukkan waktu yang valid.');
+            return;
+        }
+        let remaining = time;
+        document.getElementById('timerDisplay').innerHTML = `Waktu: ${remaining}s`;
+        const interval = setInterval(() => {
+            remaining--;
+            document.getElementById('timerDisplay').innerHTML = `Waktu: ${remaining}s`;
+            if (remaining <= 0) {
+                clearInterval(interval);
+                document.getElementById('timerDisplay').innerHTML = `Waktu Habis!`;
+            }
+        }, 1000);
+    }
+</script>
+
 </body>
 </html>
