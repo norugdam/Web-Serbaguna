@@ -85,12 +85,13 @@
     <script>
         let adSeen = false;
 
-        function showAd() {
-            // <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886"
-     crossorigin="anonymous"></script>
-            document.getElementById('ad-container').innerHTML = '<p>Iklan: Terima kasih telah mendukung kami!</p>';
-            adSeen = true;
-            document.getElementById('download-btn').disabled = false;
+        function checkAd() {
+            // Memastikan pengguna melihat iklan (simulasi dengan delay 5 detik)
+            setTimeout(() => {
+                adSeen = true;
+                document.getElementById('download-btn').disabled = false;
+                alert('Terima kasih telah mendukung kami dengan melihat iklan.');
+            }, 5000); // Sesuaikan durasi ini jika perlu
         }
 
         function generateLetter() {
@@ -186,14 +187,9 @@
         </div>
 
         <div id="ad-container">
-            <button onclick="showAd()">Lihat Iklan</button>
-        </div>
-
-        <div id="letter-preview"></div>
-        <button id="download-btn" onclick="downloadPDF()" disabled>Unduh PDF</button>
-    </main>
-    <footer>
-        &copy; 2024 Pembuat Surat Lamaran Kerja
-    </footer>
-</body>
-</html>
+            <!-- Google AdSense -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-504946556463
