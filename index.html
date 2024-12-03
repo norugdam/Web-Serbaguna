@@ -82,19 +82,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886"
-     crossorigin="anonymous"></script>
-        let adSeen = false;
-
-        function checkAd() {
-            // Memastikan pengguna melihat iklan (simulasi dengan delay 5 detik)
-            setTimeout(() => {
-                adSeen = true;
-                document.getElementById('download-btn').disabled = false;
-                alert('Terima kasih telah mendukung kami dengan melihat iklan.');
-            }, 5000); // Sesuaikan durasi ini jika perlu
-        }
-
+    <script>
         function generateLetter() {
             const name = document.getElementById('name').value;
             const address = document.getElementById('address').value;
@@ -135,11 +123,6 @@
         }
 
         function downloadPDF() {
-            if (!adSeen) {
-                alert('Harap lihat iklan terlebih dahulu untuk mendukung kami.');
-                return;
-            }
-
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
@@ -188,9 +171,24 @@
         </div>
 
         <div id="ad-container">
-            <!-- Google AdSense -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5049465564637886"
                 crossorigin="anonymous"></script>
+            <!-- Kontainer Iklan -->
             <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-504946556463
+                 style="display:block; text-align:center;"
+                 data-ad-client="ca-pub-5049465564637886"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div id="letter-preview"></div>
+        <button id="download-btn" onclick="downloadPDF()">Unduh PDF</button>
+    </main>
+    <footer>
+        &copy; 2024 Pembuat Surat Lamaran Kerja
+    </footer>
+</body>
+</html>
